@@ -42,12 +42,17 @@
           data_table.addRow([new Date(year, month, date, hour, min, sec), parseInt(sensor_data[i].temp1)])
         }
 
-        var options = {
-              title: 'Post 1',
+          var options = {
+              title: 'Post 2',
               vAxis: { 
                 title: "Temperature", 
+                viewWindowMode:'explicit',
+                viewWindow:{
+                  max:100,
+                  min:0
+                }
             }
-        };
+          };
 
 
 

@@ -46,9 +46,10 @@ setInterval(function(){
 
 	// YOU'LL NEED TO PUT YOUR ELECTRIC IMP URL HERE V
   //imp2
-	request('https://agent.electricimp.com/EBdKJaclLMFh', function (error, response, body) {
+	request('https://agent.electricimp.com/6Cz6I72dS_jl', function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var temperatures = body;
+      console.log(body);
       obj = JSON.parse(body);
       console.log(obj);
 
@@ -58,14 +59,14 @@ setInterval(function(){
           humidity: obj.humidity,
           time1: obj.time1
 
-      }, function( error, docs) {
+      }, function(error, docs) {
     });
 
 		}
 	});
 
 
-}, 10000);
+}, 300000);
 
 
 

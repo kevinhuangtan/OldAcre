@@ -41,10 +41,22 @@
           data_table.addRow([new Date(year, month, date, hour, min, sec), parseInt(sensor_data[i].humidity)])
         }
 
+          var options = {
+              title: 'Post 2',
+              vAxis: { 
+                title: "Humidity", 
+                viewWindowMode:'explicit',
+                viewWindow:{
+                  max:80,
+                  min:0
+                }
+            }
+          };
+
 
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(data_table);
+        chart.draw(data_table, options);
       }
     </script>
 

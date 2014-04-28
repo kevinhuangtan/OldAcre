@@ -4,6 +4,15 @@ var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
+var MongoClient = require('mongodb').MongoClient;
+
+// Connect to the db
+MongoClient.connect("mongodb://kevin:jeremy1@ds043987.mongolab.com:43987/oldacre", function(err, db) {
+  if(!err) {
+    console.log("We are connected");
+  }
+});
+
 TemperatureProvider = function(host, port) {
   this.db= new Db('node-mongo-temperature', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
   this.db.open(function(){});
