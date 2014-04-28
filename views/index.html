@@ -25,7 +25,8 @@
         data_table.addColumn('datetime', 'Date');
         data_table.addColumn('number', 'temperature');
 
-        for (var i = 0; i < sensor_data.length-50; i++)
+
+        for (var i = 0; i < sensor_data.length; i++)
         {
           //parse datetime string
           var str = sensor_data[i].time1;
@@ -41,12 +42,118 @@
           data_table.addRow([new Date(year, month, date, hour, min, sec), parseInt(sensor_data[i].temp1)])
         }
 
+        var options = {
+              title: 'Post 1',
+              vAxis: { 
+                title: "Temperature", 
+            }
+        };
+
 
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(data_table);
+        chart.draw(data_table, options);
       }
     </script>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+          google.load("visualization", "1", {packages:["corechart"]});
+          google.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Time', 'Air Temperature', 'Soil Temperature'],
+              ['4/18',  60, 50],
+              ['4/19',  51, 40],
+              ['4/20',  62, 45],
+              ['4/21',  63, 49],
+              ['4/22',  54, 61],
+              ['4/23',  67, 43]
+
+            ]);
+
+            var options = {
+              title: 'Post 2',
+              vAxis: { 
+                title: "Temperature", 
+                viewWindowMode:'explicit',
+                viewWindow:{
+                  max:120,
+                  min:0
+                }
+            }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+            chart.draw(data, options);
+          }
+        </script>
+
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+          google.load("visualization", "1", {packages:["corechart"]});
+          google.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Time', 'Air Temperature', 'Soil Temperature'],
+              ['4/18',  60, 50],
+              ['4/19',  51, 40],
+              ['4/20',  62, 45],
+              ['4/21',  63, 49],
+              ['4/22',  54, 61],
+              ['4/23',  67, 43]
+
+            ]);
+
+            var options = {
+              title: 'Post 3',
+              vAxis: { 
+                title: "Temperature", 
+                viewWindowMode:'explicit',
+                viewWindow:{
+                  max:120,
+                  min:0
+                }
+            }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+            chart.draw(data, options);
+          }
+        </script>
+
+         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+          google.load("visualization", "1", {packages:["corechart"]});
+          google.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Time', 'Air Temperature', 'Soil Temperature'],
+              ['4/18',  60, 50],
+              ['4/19',  51, 40],
+              ['4/20',  62, 45],
+              ['4/21',  63, 49],
+              ['4/22',  54, 61],
+              ['4/23',  67, 43]
+
+            ]);
+
+            var options = {
+              title: 'Post 4',
+              vAxis: { 
+                title: "Temperature", 
+                viewWindowMode:'explicit',
+                viewWindow:{
+                  max:120,
+                  min:0
+                }
+            }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+            chart.draw(data, options);
+          }
+        </script>
       
 
   </head>
@@ -80,18 +187,14 @@
         <div class="span9">
           <div class="container">
               <div id="chart_div" style="width: 700px; height: 400px;"></div>
-
+              <div id="chart_div2" style="width: 700px; height: 400px;"></div>
+              <div id="chart_div3" style="width: 700px; height: 400px;"></div>
+              <div id="chart_div4" style="width: 700px; height: 400px;"></div>
           </div>
         </div>
       </div>
     </div>
 
-<!--     <p id="test"> </p> -->
-
-    <script> 
-    // document.getElementById('test').innerHTML = JSON.stringify(sensor_data[0]);
-
-    </script>
 
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>

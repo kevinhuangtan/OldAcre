@@ -45,7 +45,8 @@ app.get('/getdata', function(req, res){
 setInterval(function(){
 
 	// YOU'LL NEED TO PUT YOUR ELECTRIC IMP URL HERE V
-	request('https://agent.electricimp.com/CZJWSak-vzAf', function (error, response, body) {
+  //imp2
+	request('https://agent.electricimp.com/EBdKJaclLMFh', function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var temperatures = body;
       obj = JSON.parse(body);
