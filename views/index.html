@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Old Acre</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1', {'packages':['corechart']});
+
+    google.setOnLoadCallback(drawChart);
+    var sensor_data = $.ajax({
+        url: "/getdata",
+        dataType:"json",
+        async: false
+    }).responseJSON.sensor_data;
+
+
+      function drawChart() {
+        var data_table = new google.visualization.DataTable();
+        data_table.addColumn('datetime', 'Date');
+        data_table.addColumn('number', 'temperature');
+
+        for (var i = 0; i < sensor_data.length-50; i++)
+        {
+          //parse datetime string
+          var str = sensor_data[i].time1;
+          var date = str.split('-');
+          var year = date[0];
+          var month = date[1];
+          var split = date[2].split(' ');
+          var date = split[0];
+          var time = split[1].split(':');
+          var hour = time[0];
+          var min = time[1];
+          var sec = time[2];
+          data_table.addRow([new Date(year, month, date, hour, min, sec), parseInt(sensor_data[i].temp1)])
+        }
+
+
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data_table);
+      }
+    </script>
+      
+
+  </head>
+
+  <body>
+
+   <body>
+    <div class="container">
+      <h1><a href="#">Yale Farm - Old Acre</a></h1>
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <ul class="nav">
+              <li class="active"><a href="/">Temperature</a></li>
+              <li><a href="/humidity">Humidity</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="span3">
+          <ul class="nav nav-list">
+            <li class="nav-header">Time Frame</li>
+            <li class="active"><a href="#">Week</a></li>
+            <li><a href="#">Month</a></li>
+            <li><a href="#">Six Months</a></li>
+            <li><a href="#">Year</a></li>
+            <li><a href="#">Two Years</a></li>
+          </ul>
+        </div>
+        <div class="span9">
+          <div class="container">
+              <div id="chart_div" style="width: 700px; height: 400px;"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--     <p id="test"> </p> -->
+
+    <script> 
+    // document.getElementById('test').innerHTML = JSON.stringify(sensor_data[0]);
+
+    </script>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+
+
+</html>
